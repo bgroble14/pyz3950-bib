@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: PyZ3950
+Version: 2.5.1a1
+Summary: Z39.50 (ZOOM API), ASN.1, and MARC implementations
+Home-page: http://www.pobox.com/~asl2/software/PyZ3950
+Author: Aaron Lav
+Author-email: asl2@pobox.com
+License: X
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Topic :: Internet :: Z39.50
+
+Pure Python implementation of ASN.1 and Z39.50 v3,
+       with a simple MARC parser thrown in.  See the URL for details.

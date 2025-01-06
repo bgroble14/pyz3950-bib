@@ -40,7 +40,7 @@ try:
         }
     
 except ImportError as err:
-    print(f"Error importing (OK during setup): {err}")
+    print("Error importing (OK during setup)", err)
     in_setup = 1
 
 class QuerySyntaxError(Exception): pass
@@ -203,8 +203,8 @@ class QuallistVal:
 def xlate_qualifier (x):
     if x[0] == '(' and x[-1] == ')':
         t = x[1:-1].split (',') # t must be of len 2 b/c of lexer
-        return (int(t[0]), int(t[1]))
-    return qual_dict[x.upper ()]
+        return (string.atoi (t[0]), string.atoi (t[1]))
+    return qual_dict[(x.upper ())]
 
 
 def p_elements_2 (t):
@@ -266,7 +266,7 @@ def attrset_to_oid (attrset):
     if split_l[0] == '':
         split_l = oids.Z3950_ATTRS + split_l[1:]
     try:
-        intlist = list(map(int, split_l))
+        intlist = list(map (string.atoi, split_l))
     except ValueError:
         raise ParseError ('Bad OID: ' + l)
     return asn1.OidVal (intlist)
@@ -355,13 +355,10 @@ if __name__ == '__main__':
     testfn = testyacc
     #    testfn = testlex
     testfn ('attrset (BIB1/ au="Gaiman, Neil" or ti=Sandman)')
-    while True:
-        try:
-            s = input('Query: ')
-            if not s:
-                break
-            testfn(s)
-        except EOFError:
+    while 1:
+        s = input ('Query: ')
+        if len (s) == 0:
             break
+        testfn (s)
 #    testyacc ()
 #    testlex ()
